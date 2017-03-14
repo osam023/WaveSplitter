@@ -14,7 +14,7 @@ wave\_splitter provide audio split feature. This tool have to use Python version
 
     ```sh
     $ git clone https://github.com/osam023/WaveSplitter.git ~/.bin
-    $ echo "export PATH=$PATH/.bin" >> ~/.bash_profile
+    $ echo "export PATH=$PATH:$HOME/.bin" >> ~/.bash_profile
     ```
     **ATTENTION:** If you already have **.bin** directory, then you change current directory to **.bin**. And clone the wave_splitter.
 
