@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-# coding:utf-8
+# -*- coding: utf-8 -*-
+
 import wave
 import sys
 import os
@@ -25,7 +26,7 @@ class WaveSplitter(object):
     __output_name = "output"
     __workdir = ""
 
-    __mode = 0 # 0:divid, 1:combile
+    __mode = 0 # 0:divid, 1:combine
 
     ## constructor.
     def __init__(self):
@@ -89,11 +90,6 @@ class WaveSplitter(object):
     
         self.__wave_data.setpos(start)
         output_data.writeframes(self.__wave_data.readframes(end))
-        #print "create",
-        #print self._prefix(count) + "_" + self.__output_name + ".wav",
-        #print channels,
-        #print sample,
-        #print framerate
         output_data.close()
 
     ## checking work directory.
@@ -137,22 +133,10 @@ class WaveSplitter(object):
     def run(self):
         if self.__mode == 0:
             self._divide()
-            #print "divide success!!"
         elif self.__mode == 1:
             self._combine()
-            #print "combine success!!"
         else:
             pass
-            #print "error2."
-
-    ## show class status.
-    def show_status(self):
-        pass
-        #print self.__filesize
-        #print self.__onefilesize
-        #print self.__split_size
-        #print self.__args
-        #print self.__optlist
 
 ## main method.
 def main():
