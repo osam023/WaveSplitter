@@ -5,13 +5,8 @@ import wave
 import os
 import click
 
-OUTPUT_FILE_NAME = 'output'
-COMBINE_CHANNEL = 2
-COMBINE_SAMPLE = 2
-COMBINE_FRAMERATE = 44100
-
 """
- This class is edit wave file divide/combine.
+ This class is edit wave file divide
  
  TODO: support logfile.
 """
@@ -21,8 +16,6 @@ class WaveSplitter(object):
 
     __output_dir = ''
     __workdir = ''
-
-    __mode = 0 # 0:divid, 1:combine
 
     ## constructor.
     def __init__(self):
@@ -80,7 +73,7 @@ class WaveSplitter(object):
     def _output_file(self, start, end, count, channels, sample, framerate, wave_data):
         self._check_workdir()
 
-        output_filename = self._prefix(count) + '_' + OUTPUT_FILE_NAME + '.wav'
+        output_filename = self._prefix(count) + '_' + os.path.splitext(self.__wave_filename)[0] + '.wav'
         filename = os.path.join(self.__workdir, output_filename)
 
         output_data = wave.open(filename, 'wb')
@@ -112,34 +105,9 @@ class WaveSplitter(object):
             prefix = '0' + prefix
         return prefix
 
-    ## combine wave files.
-    def _combine(self):
-        if self.__output_name == 'output':
-            self.__output_name == 'combine.wav'
-        
-        divide_files = []
-        for filename in os.listdir(self.__workdir):
-            filename = os.path.join(self.__workdir, filename)
-            divide_files.append(wave.open(filename, 'rb'))
-
-        output_data = wave.open(self.__output_name, 'wb')
-        output_data.setnchannels(divide_files[0].getnchannels())
-        output_data.setsampwidth(divide_files[0].getsampwidth())
-        output_data.setframerate(divide_files[0].getframerate())
-        
-        for f in divide_files:
-            output_data.writeframes(f.readframes(f.getnframes()))
-            f.close()
-        output_data.close()
-
-    ## execute divide/combine.
+    ## execute divide
     def run(self):
-        if self.__mode == 0:
-            self._divide()
-        elif self.__mode == 1:
-            self._combine()
-        else:
-            pass
+        self._divide()
 
 ## main method.
 @click.command(help='Wave file splitter')
