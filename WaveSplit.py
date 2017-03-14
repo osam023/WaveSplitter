@@ -70,9 +70,11 @@ class WaveSplitter(object):
                     end = filesize / self.__split_size
                 else:
                     end = filesize - ((filesize / self.__split_size) * (self.__split_size - 1))
+                self._output_file(start, end, counter, channels, sample, framerate, wave_data)
             except IndexError, ie:
-                pass
-            self._output_file(start, end, counter, channels, sample, framerate, wave_data)
+                wave_data.close()
+                break
+        wave_data.close()
             
     ## write wave file.
     def _output_file(self, start, end, count, channels, sample, framerate, wave_data):
