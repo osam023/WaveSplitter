@@ -4,7 +4,7 @@
 import wave
 import sys
 import os
-import getopt
+import click
 
 """
  this class is edit wave file divide/combile.
@@ -139,10 +139,14 @@ class WaveSplitter(object):
             pass
 
 ## main method.
-def main():
+@click.command(help='Wave file splitter')
+@click.option('-s', '--split-size', 'split_size', type=int, help='split size', default=2, required=False)
+@click.option('-i', '--input-file', 'input_file', type=str, help='input file path(wave file only)', required=True)
+@click.option('-o', '--output-dir', 'output_dir', type=str, help='output directory path', default='.', required=False)
+def main(split_size, input_file, output_dir):
     ws = WaveSplitter()
-    ws.set_wavefile("loop2.wav")
-    ws.set_splitsize(4)
+    ws.set_splitsize(split_size)
+    ws.set_wavefile(input_file)
     ws.run()
 
 if __name__ == '__main__':
