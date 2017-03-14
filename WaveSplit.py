@@ -73,7 +73,8 @@ class WaveSplitter(object):
     def _output_file(self, start, end, count, channels, sample, framerate, wave_data):
         self._check_workdir()
 
-        output_filename = self._prefix(count) + '_' + os.path.splitext(self.__wave_filename)[0] + '.wav'
+        prefix = str(count).zfill(len(str(self.__split_size)))
+        output_filename = '{0}_{1}.wav'.format(prefix, os.path.splitext(self.__wave_filename)[0])
         filename = os.path.join(self.__workdir, output_filename)
 
         output_data = wave.open(filename, 'wb')
@@ -94,16 +95,6 @@ class WaveSplitter(object):
         self.__workdir = os.path.join(self.__wave_path, self.__output_dir)
         if not os.path.exists(self.__workdir):
             os.mkdir(self.__workdir)
-
-    ## output file prefix.
-    def _prefix(self, count):
-        prefix = str(count)
-        size = len(str(self.__split_size))
-        for x in range(1, size):
-            if size == len(prefix):
-                break
-            prefix = '0' + prefix
-        return prefix
 
     ## execute divide
     def run(self):
