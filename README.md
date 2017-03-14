@@ -20,6 +20,12 @@ wave\_splitter provide audio split feature. This tool have to use Python version
 
 3. Restart your shell.
 
+4. Check the wave\_splitter install success.
+
+   ```sh
+   $ wave_splitter --version
+   ```
+
 **NOTE:**
 If you cannot execute wave\_splitter, Set execute authority that program(```$ chmod +x wave_splitter```).
 
