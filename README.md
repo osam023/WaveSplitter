@@ -4,11 +4,15 @@ wave\_splitter provide audio split feature. This tool have to use Python version
 ## Install
 1. Install third party library called [Click](http://click.pocoo.org/5/) into your Python environment.
 
-   $ pip install click
+    ```sh
+    $ pip install click
+    ```
    
 2. Clone wave\_splitter where you want it installed(ex: ~/.bin). Installed path is better set environment PATH.
 
-	$ echo "export PATH=$PATH/.bin" >> ~/.bash_profile
+    ```sh
+	 $ echo "export PATH=$PATH/.bin" >> ~/.bash_profile
+	 ```
 
 3. Restart your shell.
 
@@ -18,7 +22,9 @@ If you cannot execute wave\_splitter, Set execute authority that program($ chmod
 ## Usage
 You can split the audio file by executing below command. If you have to more information, use --help option.
 
-$ wave\_splitter --split-size [ _split size_ ] --input-file [ _input file path_ ] --output-dir [ _output directory path_ ]
+```sh
+$ wave_splitter --split-size [split size] --input-file [input file path] --output-dir [output directory path]
+```
 
 ### Option Variables
 option(long) | option(short)| required | description
