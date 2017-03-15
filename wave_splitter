@@ -29,7 +29,7 @@ class WaveSplitter(object):
             filename: Wave file path.
         """
         self.__wave_path = os.path.dirname(os.path.abspath(filename))
-        self.__wave_filename = filename
+        self.__wave_filename = os.path.basename(filename)
 
     def set_splitsize(self, num):
         """ Set split file size.
@@ -118,15 +118,22 @@ class WaveSplitter(object):
         """Checking work directory.
         If work directory not exists, create work directory automatically.
         """
-        self.__workdir = os.path.join(self.__wave_path, self.__output_dir)
+        # TODO If user set '--output-dir out' option, not working!
+        if self.__output_dir != 'out':
+            self.__workdir = os.path.join(os.path.abspath((os.path.curdir)), self.__output_dir)
+        else:
+            self.__workdir = os.path.join(self.__wave_path, self.__output_dir)
+
         if not os.path.exists(self.__workdir):
             os.mkdir(self.__workdir)
+
 
 def print_version(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
     click.echo(__version__)
     ctx.exit()
+
 
 @click.command(help='Wave file splitter')
 @click.option('-s', '--split-size', 'split_size', type=int, help='split size', default=2, required=False)
