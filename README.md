@@ -37,13 +37,19 @@ You can split the audio file by executing below command. If you have to more inf
 $ wave_splitter --split-size [split size] --input-file [input file path] --output-dir [output directory path]
 ```
 
+**example:**
+
+```sh
+$ wave_splitter --split-size 4 --input-file foo.wav --output-dir ./output/
+```
+
 ### Option Variables
 
 option(long) | option(short)| required | description
 ---|---|---|---
 --split-size|-s|NO|Split size number. Default is 2.
 --input-file|-i|YES|Input audio file path.
---output-dir|-o|NO|Output directory path. Default is **./out/**
+--output-dir|-o|NO|Output directory path. Default is **/out/** of the same path as the input file.
 
 ## License
 
