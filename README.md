@@ -10,7 +10,7 @@ wave\_splitter provide audio split feature. This tool have to use Python version
     $ pip install click
     ```
    
-2. Clone wave\_splitter where you want it installed(ex: ~/.bin). Installed path is better set environment PATH.
+2. Clone wave\_splitter where you want it installed(ex: ~/.bin) and set the PATH environment variable.
 
     ```sh
     $ git clone https://github.com/osam023/WaveSplitter.git ~/.bin
@@ -18,9 +18,15 @@ wave\_splitter provide audio split feature. This tool have to use Python version
     ```
     **ATTENTION:** If you already have **.bin** directory, then you change current directory to **.bin**. And clone the wave_splitter.
 
-3. Restart your shell.
+3. Add execute authority.
 
-4. Check the wave\_splitter install success.
+    ```sh
+    $ chmod +x ~/.bin/wave_splitter
+    ```
+
+4. Restart your shell.
+
+5. Check the wave\_splitter install success.
 
    ```sh
    $ wave_splitter --version
