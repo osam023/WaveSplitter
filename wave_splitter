@@ -93,8 +93,8 @@ class WaveSplitter(object):
         """
         self._check_workdir()
 
-        prefix = str(count).zfill(len(str(self.__split_size)))
-        output_filename = OUTPUT_FILENAME.format(prefix, os.path.splitext(self.__wave_filename)[0])
+        sequence_number = str(count).zfill(len(str(self.__split_size)))
+        output_filename = OUTPUT_FILENAME.format(os.path.splitext(self.__wave_filename)[0], sequence_number)
         filename = os.path.join(self.__workdir, output_filename)
 
         output_data = wave.open(filename, 'wb')
